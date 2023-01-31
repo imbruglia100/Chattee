@@ -12,6 +12,7 @@ import Message from "../components/Message";
 
 function Chatbox() {
     const [messages, setMessages] = useState([]);
+    const chatBox = document.getElementById("chatBox")
 
     useEffect(() => {
       const q = query(
@@ -30,15 +31,15 @@ function Chatbox() {
     }, []);
 
   return (
-    <main className="w-10/12 border m-auto">
-      <div>
-        <div className="p-32 mb-[60px]">
+    <main className="w-10/12 flex flex-col justify-between bg-slate-100 overflow-hidden rounded-3xl h-[80vh] border-slate-600 border-2 p-1 shadow-lg  shadow-slate-300 m-auto">
+      <div id="chatBox" className="h-full overflow-y-scroll scrollbar">
+        <div className="flex flex-col flex-wrap relative transform ">
           {messages?.map((message) => (
             <Message key={message.id} message={message} />
           ))}
         </div>
-        <SendMessage />
       </div>
+      <SendMessage />
     </main>
   );
 }
